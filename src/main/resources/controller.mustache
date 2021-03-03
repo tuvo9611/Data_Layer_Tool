@@ -1,0 +1,34 @@
+package {{packageName}};
+
+{{#libraries}}
+import {{.}};
+{{/libraries}}
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+
+@RestController 
+public class {{className}} {
+	private static final Logger logger = LogManager.getLogger({{className}}.class);
+	
+	{{#methods}}
+	{{httpMethod}}(value= "{{url}}")
+	public ResponseEntity<{{responseModel}}> {{methodName}}({{{requestParameter}}}{{requestBody}}{{#requestModel}}{{requestModel}} request{{/requestModel}}) throws BusinessException{
+		ResponseEntity<{{responseModel}}> response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		{{responseModel}} result = new {{responseModel}}();
+		try {
+			// Todo
+			response = new ResponseEntity<>(result, HttpStatus.OK);
+		} catch (Exception ex) {
+			logger.log(Level.ERROR, LogMessageConstants.LOG_003,
+					Thread.currentThread().getStackTrace()[1].getMethodName(), ex.getMessage());
+			throw new BusinessException();
+		}
+		return response;
+	}
+	
+    {{/methods}}
+}

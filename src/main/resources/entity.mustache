@@ -1,0 +1,27 @@
+package {{packageName}};
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+{{#libraries}}
+import {{.}};
+{{/libraries}}
+
+@Entity
+@Table(name = "{{tableName}}")
+@Getter
+@Setter
+@NoArgsConstructor
+public class {{className}} {{extendOrImpl}} {{classExtendOrImpl}} {
+	private static final long serialVersionUID = 1L;
+	
+	{{#properties}} 
+	{{#annotations}}
+	@{{annotationName}}{{{annotationValue}}}
+	{{/annotations}}
+	private {{{dataType}}} {{fieldName}};
+	
+	{{/properties}}
+}

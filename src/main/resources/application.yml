@@ -1,0 +1,52 @@
+server: 
+  port: 8081
+#spring:
+#  datasource:
+#    url: jdbc:postgresql://localhost:5432/demo_entity
+#    username: postgres
+#    password: 123454
+#  jpa:
+#    hibernate:
+#      ddl-auto: none
+#    show-sql: true
+#  flyway:
+#    enabled: true
+#    baseline-on-migrate: true
+    
+mustache:
+  templateLandingService: serviceFrontEnd.mustache
+  templateEntity: entity.mustache
+  templateRepository: repository.mustache
+  templatePostgres: tablePostgres.mustache
+  templateController: controller.mustache
+  templateDto: dto.mustache
+
+input:
+  templateEntityExcel: template_excel_table_check.xlsx
+  templateControllerExcel: BD-LMS-S-4100.xlsx
+  templateServiceExcel: BD-LMS-S-4100.xlsx
+ 
+output:
+  folderEntity: output/entity
+  folderRepository: output/repository
+  folderPostgres: output/postgres
+  folderController: output/controller
+  folderDtoRequest: output/dto/request
+  folderDtoResponse: output/dto/response
+  folderLandingService: output/landing.service
+  sqlPostgres: tablePostgres.txt
+ 
+packageName:
+  entity: com.example.demo.entity
+  repository: com.example.demo.repository
+  controller: com.example.demo.controller
+  dtoRequest: com.example.demo.dto.request
+  dtoResponse: com.example.demo.dto.response
+  businessException: com.example.demo.common.BusinessException
+  logMessageConstants: com.example.demo.common.LogMessageConstants
+
+pattern:
+  date: \\d{4}-\\d{2}-\\d{2}
+  mail: ^([_a-zA-Z0-9-]+(\\.[_a-zA-Z0-9-]+)*@[a-zA-Z0-9-]+(\\.[a-zA-Z0-9-]+)*(\\.[a-zA-Z]{1,6}))?$
+  phone: ^[0-9]{10}$
+  

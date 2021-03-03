@@ -1,0 +1,25 @@
+@Injectable({
+  providedIn: 'root'
+})
+export class {{pagename}}Service {
+constructor(private http: HttpRequestService) {}
+
+baseUrl = environment.baseUrl;
+
+{{#methods}}
+{{methodname}}(data: HttpRequestModel) {
+const apiUrl = `${this.baseUrl}{{url}}`;
+const params = data.params;
+const body = data.body;
+const headers = data.headers;
+
+{{#methodmapping}}
+return this.http.{{method}}(apiUrl, params, body, headers);
+{{/methodmapping}}
+{{^methodmapping}}
+return this.http.{{method}}(apiUrl, body, params, headers);
+{{/methodmapping}}
+}
+{{/methods}}
+
+}
